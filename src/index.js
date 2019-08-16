@@ -12,12 +12,13 @@ app.use(bodyParser.json());
 MongoClient.connect(db.url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-}, (err) => {
+}, (err, client) => {
     if (err) {
         return console.log('Error: Cannot establish connection with mongoDB:', err.message);
     }
-    
-    routes(app, {});
+
+    const database = client.db("testdb");
+    routes(app, database);
 
     app.listen(port, () => console.log(`App listeining on port ${port}`));
 });
