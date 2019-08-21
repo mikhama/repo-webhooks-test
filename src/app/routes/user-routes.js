@@ -23,6 +23,8 @@ module.exports = (app, db) => {
         const { name } = req.body.pusher;
 
         console.log('User =>', name);
+
+        res.send({ name });
     });
 
     app.get('/user/:_id', async (req, res) => {
