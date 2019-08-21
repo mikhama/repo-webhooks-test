@@ -21,9 +21,23 @@ module.exports = (app, db) => {
 
     app.post('/repo', async (req, res) => {
         const { name } = req.body.pusher;
-
-        console.log('User =>', name);
-
+        const date = Date.now();
+        const _id = name;
+        const user = { _id, date };
+        
+        try {
+            const result = await db.collection('tusers')
+                .replaceOne(
+                    { _id: { $eq: _id }},
+                    { $set: user },
+                    { upsert: true },
+                );
+            
+            res.send(result);
+        } catch (err) {
+            console.log('Error: Cannot insert to database:', err.message);
+            res.send(err);
+        }
         res.send({ name });
     });
 
