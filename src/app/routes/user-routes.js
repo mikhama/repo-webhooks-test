@@ -26,6 +26,7 @@ module.exports = (app, db) => {
         const user = { _id, date };
 
         console.log('Body =>', req.body);
+        console.log('User =>', req.body.sender.login);
 
         try {
             const result = await db.collection('tusers')
