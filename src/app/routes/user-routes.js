@@ -20,13 +20,12 @@ module.exports = (app, db) => {
     });
 
     app.post('/repo', async (req, res) => {
-        const { name } = req.body.pusher || { name: 'unknown' };
+        const { login } = req.body.sender || { login: 'unknown' };
         const date = Date.now();
-        const _id = name;
+        const _id = login;
         const user = { _id, date };
 
-        console.log('Body =>', req.body);
-        console.log('User =>', req.body.sender.login);
+        console.log('User =>', login);
 
         try {
             const result = await db.collection('tusers')
