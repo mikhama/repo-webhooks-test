@@ -18,4 +18,18 @@ module.exports = (app, db) => {
             res.send(err);
         }
     });
+
+    app.get('/user/:_id', async (req, res) => {
+        const { _id } = req.params;
+
+        try {
+            const result = await db.collection('tusers')
+                .findOne({ _id });
+            
+            res.send(result);
+        } catch (err) {
+            console.log('Error: Cannot find a user:', err.message);
+            res.send(err);
+        }
+    });
 };

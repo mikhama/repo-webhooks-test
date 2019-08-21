@@ -17,7 +17,8 @@ MongoClient.connect(db.url, {
         return console.log('Error: Cannot establish connection with mongoDB:', err.message);
     }
 
-    const database = client.db("testdb");
+    const database = client.db('testa');
+
     routes(app, database);
 
     app.listen(port, () => console.log(`App listeining on port ${port}`));
