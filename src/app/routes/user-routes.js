@@ -20,7 +20,9 @@ module.exports = (app, db) => {
     });
 
     app.post('/repo', async (req, res) => {
-        console.log('Body =>', req.body);
+        const { name } = req.body.pusher;
+
+        console.log('User =>', name);
     });
 
     app.get('/user/:_id', async (req, res) => {
