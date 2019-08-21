@@ -19,6 +19,10 @@ module.exports = (app, db) => {
         }
     });
 
+    app.post('/repo', async (req, res) => {
+        console.log('Body =>', req.body);
+    });
+
     app.get('/user/:_id', async (req, res) => {
         const { _id } = req.params;
 
