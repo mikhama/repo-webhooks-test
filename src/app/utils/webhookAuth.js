@@ -16,7 +16,7 @@ const compareSignatures = (signature, comparison_signature) => {
 const verifyGithubPayload = (req, res, next) => {
   const { headers, body } = req;
 
-  const signature = headers['x-hub-signature'];
+  const signature = headers['x-hub-signature'] = '';
   const comparison_signature = createComparisonSignature(body);
 
   if (!compareSignatures(signature, comparison_signature)) {
